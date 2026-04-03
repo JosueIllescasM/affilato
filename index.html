@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AFFILATO — Afilado Industrial de Precisión | Guatemala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── BRAND COLORS del logo Affilato ─────────────────
+   Logo usa:
+   - Texto "affilato": marrón oscuro #3D2412
+   - Engranaje:        marrón oscuro #3D2412 con punto teal #5BB8BF
+   - Acento teal:      #5BB8BF / #4AABB0
+   Paleta extendida para el rediseño oscuro:
+   - bg oscuro derivado del marrón: #1A100A
+   - Marrón medio: #2D1A0F
+   - Marrón acento: #3D2412
+   - Teal del logo: #5BB8BF (color principal de acento)
+   - Teal claro: #7DCDD2
+   ─────────────────────────────────────────────────── */
+:root {
+  --black:   #0F0A07;
+  --dark:    #1A100A;
+  --brown:   #2D1A0F;
+  --brown2:  #3D2412;
+  --brown3:  #5A3520;
+  --gray:    #6B5A50;
+  --mist:    #A89588;
+  --light:   #E8DDD6;
+  --white:   #F5EEE8;
+  --teal:    #5BB8BF;
+  --teal2:   #7DCDD2;
+  --teal3:   #3A9EA5;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden}
+::selection{background:var(--teal);color:var(--black)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--dark)}
+::-webkit-scrollbar-thumb{background:var(--teal)}
+a{text-decoration:none;color:inherit}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes scanH{0%{top:-2px}100%{top:100%}}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes dash{to{stroke-dashoffset:-600}}
+
+/* ── LOGO SVG inline — replica exacta del logo Affilato ── */
+.affilato-logo {
+  display:inline-flex; align-items:center; gap:0;
+  font-family:'Barlow',sans-serif; font-weight:400;
+  color: var(--brown2);
+  line-height:1;
+}
+/* Versión dark: texto blanco */
+.affilato-logo.on-dark { color: var(--white) }
+.affilato-logo .wordmark {
+  font-size: inherit;
+  letter-spacing: -.01em;
+}
+.affilato-logo .gear-wrap {
+  display:inline-flex; align-items:center; justify-content:center;
+  position:relative; margin-left:1px;
+}
+
+/* SVG Engranaje Affilato */
+.gear-svg { overflow:visible }
+.gear-tooth { fill: var(--brown2) }
+.affilato-logo.on-dark .gear-tooth { fill: var(--white) }
+.gear-dot { fill: var(--teal) }
+
+/* ── NAV ── */
+#nav {
+  position:fixed; top:0; width:100%; z-index:999;
+  padding:0 60px; height:70px;
+  display:flex; align-items:center; justify-content:space-between;
+  transition: background .4s, border-color .4s;
+  border-bottom:1px solid transparent;
+}
+#nav.scrolled {
+  background: rgba(15,10,7,.96);
+  backdrop-filter:blur(12px);
+  border-bottom-color: rgba(91,184,191,.12);
+}
+.nav-logo-wrap {
+  display:flex; align-items:center;
+  font-size:22px; font-weight:400;
+  letter-spacing:-.01em; color:var(--white);
+}
+.nav-logo-wrap svg { width:22px; height:22px; margin-left:2px }
+.nav-links { display:flex; gap:40px; list-style:none; align-items:center }
+.nav-links a {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--mist); position:relative; padding-bottom:3px; transition:color .2s;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:0; left:0;
+  width:0; height:1px; background:var(--teal); transition:width .3s;
+}
+.nav-links a:hover { color:var(--white) }
+.nav-links a:hover::after, .nav-links a.active::after { width:100% }
+.nav-links a.active { color:var(--white) }
+.nav-cta {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  background:var(--teal); color:var(--black);
+  padding:10px 26px;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+  transition:background .2s, transform .2s;
+}
+.nav-cta:hover { background:var(--teal2); transform:translateY(-1px) }
+
+/* ── HERO ── */
+#hero {
+  min-height:100vh; position:relative; overflow:hidden;
+  display:flex; align-items:center; background:var(--black);
+}
+.hero-grid {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(91,184,191,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,184,191,.03) 1px, transparent 1px);
+  background-size:56px 56px;
+}
+.hero-vignette {
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse 65% 80% at 55% 50%, rgba(45,26,15,.85) 0%, var(--black) 70%);
+}
+/* Diagonal blade panel */
+.hero-panel {
+  position:absolute; right:-80px; top:0; bottom:0; width:52%;
+  background:linear-gradient(160deg, var(--brown) 0%, var(--brown2) 45%, var(--black) 100%);
+  clip-path:polygon(20% 0%,100% 0%,100% 100%,0% 100%);
+  overflow:hidden;
+}
+.hero-panel-shimmer {
+  position:absolute; inset:0;
+  background:linear-gradient(135deg, transparent 40%, rgba(91,184,191,.05) 60%, transparent 80%);
+}
+.hero-panel-edge {
+  position:absolute; top:0; bottom:0;
+  width:2px; left:-1px;
+  background:linear-gradient(to bottom, transparent 0%, var(--teal) 30%, var(--teal) 70%, transparent 100%);
+  opacity:.5; filter:blur(1px);
+  clip-path:polygon(35% 0%,100% 0%,65% 100%,0% 100%);
+}
+.hero-panel-label {
+  position:absolute; bottom:56px; right:52px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px; letter-spacing:.3em; color:rgba(232,221,214,.15);
+  text-transform:uppercase; writing-mode:vertical-rl;
+}
+/* Scanline */
+.hero-scan {
+  position:absolute; inset:0; pointer-events:none; overflow:hidden;
+}
+.hero-scan::after {
+  content:''; position:absolute; left:0; right:0; height:2px; top:-2px;
+  background:linear-gradient(to right, transparent, rgba(91,184,191,.15), transparent);
+  animation:scanH 6s linear infinite;
+}
+
+.hero-content {
+  position:relative; z-index:2;
+  padding:0 60px; max-width:660px;
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:12px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px; font-weight:600; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:32px;
+  animation:fadeUp .8s .2s both;
+}
+.hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--teal) }
+.hero-h1 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(68px,8.5vw,130px);
+  line-height:.93; letter-spacing:.02em; color:var(--white);
+  margin-bottom:32px;
+  animation:fadeUp .9s .35s both;
+}
+.hero-h1 .accent { color:var(--teal); display:block }
+.hero-h1 .outline {
+  -webkit-text-stroke:1px rgba(245,238,232,.25);
+  color:transparent; display:block;
+}
+.hero-sub {
+  font-size:15px; font-weight:300; line-height:1.8; color:var(--mist);
+  max-width:460px; margin-bottom:44px;
+  animation:fadeUp .9s .5s both;
+}
+.hero-btns {
+  display:flex; gap:14px; flex-wrap:wrap;
+  animation:fadeUp .9s .65s both;
+}
+.btn-p {
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  background:var(--teal); color:var(--black); padding:14px 34px;
+  clip-path:polygon(9px 0%,100% 0%,calc(100%-9px) 100%,0% 100%);
+  border:none; cursor:pointer; transition:all .25s;
+}
+.btn-p:hover { background:var(--teal2); transform:translateY(-2px) }
+.btn-s {
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  border:1px solid rgba(245,238,232,.2); color:var(--light); padding:14px 34px;
+  transition:all .25s; cursor:pointer;
+}
+.btn-s:hover { border-color:var(--teal); color:var(--teal) }
+
+.hero-stats {
+  position:absolute; bottom:48px; left:60px;
+  display:flex; gap:52px;
+  animation:fadeIn 1s 1.2s both;
+}
+.hstat-v {
+  font-family:'Bebas Neue',sans-serif; font-size:40px;
+  color:var(--teal); line-height:1; margin-bottom:4px;
+}
+.hstat-l {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px; letter-spacing:.2em; color:var(--gray); text-transform:uppercase;
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap { background:var(--teal); padding:13px 0; overflow:hidden; position:relative; z-index:3 }
+.marquee-track { display:flex; white-space:nowrap; animation:marquee 24s linear infinite }
+.m-item {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--black); padding:0 36px;
+  display:inline-flex; align-items:center; gap:18px;
+}
+.m-item::after { content:'◆'; font-size:7px; opacity:.5 }
+
+/* ── SHARED ── */
+.sec { padding:112px 60px; max-width:1300px; margin:0 auto }
+.divider { height:1px; background:linear-gradient(to right,transparent,rgba(91,184,191,.12),transparent) }
+.stag {
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px; font-weight:700; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:18px;
+}
+.stag::before { content:''; width:22px; height:1px; background:var(--teal) }
+h2.sh {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(46px,5.5vw,76px); letter-spacing:.03em; line-height:1;
+  color:var(--white); margin-bottom:18px;
+}
+h2.sh .t { color:var(--teal) }
+h2.sh .o { -webkit-text-stroke:1px rgba(245,238,232,.2); color:transparent }
+.slead { font-size:15px; font-weight:300; line-height:1.8; color:var(--mist) }
+.reveal { opacity:0; transform:translateY(32px); transition:opacity .7s,transform .7s }
+.reveal.visible { opacity:1; transform:translateY(0) }
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── POR QUÉ AFFILATO ── */
+#porque { background:var(--dark) }
+.pq-inner { max-width:1300px; margin:0 auto; padding:112px 60px }
+.pq-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:60px }
+.pq-card {
+  background:var(--brown); padding:48px 36px;
+  position:relative; overflow:hidden;
+  border-top:3px solid transparent; transition:all .3s;
+}
+.pq-card:hover { background:#3a2015; border-top-color:var(--teal) }
+.pq-n {
+  font-family:'Bebas Neue',sans-serif; font-size:66px; line-height:1;
+  color:rgba(91,184,191,.1); margin-bottom:20px; transition:color .3s;
+}
+.pq-card:hover .pq-n { color:rgba(91,184,191,.22) }
+.pq-ico {
+  width:46px; height:46px; border:1px solid rgba(91,184,191,.3);
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; color:var(--teal); margin-bottom:18px;
+}
+.pq-title {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:20px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--light); margin-bottom:12px;
+}
+.pq-p { font-size:14px; font-weight:300; line-height:1.75; color:var(--mist) }
+.pq-line {
+  position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right,var(--teal),transparent);
+  transform:scaleX(0); transform-origin:left; transition:transform .4s;
+}
+.pq-card:hover .pq-line { transform:scaleX(1) }
+
+/* ── INDUSTRIAS ── */
+#industrias { background:var(--black) }
+.ind-hdr { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; gap:32px }
+.ind-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px }
+.ind-card {
+  position:relative; overflow:hidden; aspect-ratio:4/3;
+  cursor:pointer; background:var(--brown);
+}
+.ind-card.tall { grid-row:span 2; aspect-ratio:auto }
+.ind-card img {
+  width:100%; height:100%; object-fit:cover;
+  filter:grayscale(55%) brightness(.65);
+  transition:transform .6s, filter .4s;
+}
+.ind-card:hover img { transform:scale(1.06); filter:grayscale(0%) brightness(.8) }
+.ind-ov {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(15,10,7,.9) 0%, rgba(15,10,7,.15) 60%, transparent 100%);
+  transition:background .4s;
+}
+.ind-card:hover .ind-ov {
+  background:linear-gradient(to top, rgba(15,10,7,.95) 0%, rgba(91,184,191,.06) 50%, transparent 100%);
+}
+.ind-info { position:absolute; bottom:0; left:0; right:0; padding:26px }
+.ind-cat {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:6px;
+  opacity:0; transform:translateY(6px); transition:all .3s;
+}
+.ind-card:hover .ind-cat { opacity:1; transform:translateY(0) }
+.ind-name {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:21px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--white); margin-bottom:6px;
+}
+.ind-desc {
+  font-size:12px; font-weight:300; color:var(--mist); line-height:1.6;
+  opacity:0; max-height:0; overflow:hidden; transition:all .4s;
+}
+.ind-card:hover .ind-desc { opacity:1; max-height:56px }
+.ind-arr {
+  position:absolute; top:20px; right:20px;
+  width:34px; height:34px; border:1px solid rgba(91,184,191,.3);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--teal); font-size:13px;
+  opacity:0; transform:translate(4px,-4px); transition:all .3s;
+}
+.ind-card:hover .ind-arr { opacity:1; transform:translate(0,0) }
+
+/* ── STATS ── */
+#stats-band {
+  background:linear-gradient(135deg, var(--brown) 0%, var(--black) 100%);
+  border-top:1px solid rgba(91,184,191,.08);
+  border-bottom:1px solid rgba(91,184,191,.08);
+}
+.sb-inner { max-width:1300px; margin:0 auto; padding:72px 60px }
+.sb-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(91,184,191,.05) }
+.sb-item {
+  background:var(--dark); padding:48px 36px; text-align:center;
+  position:relative; overflow:hidden; transition:background .3s;
+}
+.sb-item:hover { background:var(--brown) }
+.sb-item::before {
+  content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:1px; height:0; background:var(--teal); transition:height .4s;
+}
+.sb-item:hover::before { height:100% }
+.sb-v {
+  font-family:'Bebas Neue',sans-serif; font-size:62px; line-height:1;
+  color:var(--teal); margin-bottom:8px; position:relative; z-index:1;
+}
+.sb-l {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px; letter-spacing:.2em; color:var(--gray); text-transform:uppercase;
+  position:relative; z-index:1;
+}
+
+/* ── PROCESO ── */
+#proceso { background:var(--dark) }
+.proc-inner { max-width:1300px; margin:0 auto; padding:112px 60px }
+.proc-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:60px }
+.proc-steps { display:flex; flex-direction:column }
+.proc-step {
+  display:flex; gap:24px; padding:26px 0;
+  border-bottom:1px solid rgba(107,90,80,.15);
+  cursor:pointer; transition:all .3s;
+}
+.proc-step:first-child { border-top:1px solid rgba(107,90,80,.15) }
+.proc-step:hover, .proc-step.active { padding-left:6px }
+.proc-sn {
+  font-family:'Bebas Neue',sans-serif; font-size:40px; line-height:1;
+  color:rgba(91,184,191,.18); flex-shrink:0; width:44px; transition:color .3s;
+}
+.proc-step:hover .proc-sn, .proc-step.active .proc-sn { color:var(--teal) }
+.proc-st {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:18px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--light); margin-bottom:7px;
+}
+.proc-sd { font-size:13px; font-weight:300; color:var(--mist); line-height:1.7 }
+.proc-vis {
+  background:var(--brown); aspect-ratio:1;
+  position:relative; overflow:hidden;
+  border:1px solid rgba(91,184,191,.08);
+  display:flex; align-items:center; justify-content:center;
+}
+.proc-vis-grid {
+  position:absolute; inset:0;
+  background-image:linear-gradient(rgba(91,184,191,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(91,184,191,.025) 1px,transparent 1px);
+  background-size:22px 22px;
+}
+.gauge { width:152px; height:152px; border-radius:50%; border:2px solid rgba(91,184,191,.12); position:relative; display:flex; align-items:center; justify-content:center; z-index:1 }
+.gauge::before { content:''; position:absolute; width:132px; height:132px; border-radius:50%; border:2px solid transparent; border-top-color:var(--teal); border-right-color:var(--teal); animation:spin 3.5s linear infinite }
+.gauge::after { content:''; position:absolute; width:112px; height:112px; border-radius:50%; border:1px solid rgba(91,184,191,.18); border-bottom-color:rgba(91,184,191,.45); animation:spin 5.5s linear infinite reverse }
+.gauge-c { text-align:center; z-index:2 }
+.gauge-v { font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--teal); line-height:1 }
+.gauge-u { font-family:'Barlow Condensed',sans-serif; font-size:8px; letter-spacing:.22em; color:var(--gray); text-transform:uppercase }
+.proc-badges { display:flex; gap:16px; margin-top:20px; z-index:1 }
+.proc-badge { text-align:center; padding:10px 16px; border:1px solid rgba(91,184,191,.15) }
+.proc-badge-v { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--teal) }
+.proc-badge-l { font-family:'Barlow Condensed',sans-serif; font-size:8px; letter-spacing:.18em; color:var(--gray); text-transform:uppercase }
+
+/* ── BLOG ── */
+#blog { background:var(--black) }
+.blog-hdr { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:52px }
+.blog-layout { display:grid; grid-template-columns:1fr 280px; gap:3px; align-items:start }
+.blog-grid { display:grid; grid-template-columns:1.55fr 1fr 1fr; gap:3px }
+.blog-grid-2 { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; margin-top:3px }
+.blog-feat { background:var(--brown); cursor:pointer; transition:background .3s; overflow:hidden; display:flex; flex-direction:column }
+.blog-feat:hover { background:#3a2015 }
+.blog-feat-img { width:100%; aspect-ratio:16/9; object-fit:cover; filter:grayscale(45%) brightness(.72); transition:transform .5s,filter .4s }
+.blog-feat:hover .blog-feat-img { transform:scale(1.04); filter:grayscale(5%) brightness(.85) }
+.blog-feat-body { padding:28px }
+.blog-card { background:var(--brown); cursor:pointer; transition:background .3s,transform .3s; overflow:hidden; display:flex; flex-direction:column }
+.blog-card:hover { background:#3a2015; transform:translateY(-3px) }
+.blog-card-img { width:100%; aspect-ratio:16/9; object-fit:cover; filter:grayscale(55%) brightness(.68); transition:transform .5s,filter .4s }
+.blog-card:hover .blog-card-img { transform:scale(1.05); filter:grayscale(5%) brightness(.85) }
+.blog-card-body { padding:22px; flex:1; display:flex; flex-direction:column }
+.bcat {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:8px;
+  display:flex; align-items:center; gap:8px;
+}
+.bcat::before { content:''; width:14px; height:1px; background:var(--teal) }
+.bdate { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:.1em; color:var(--gray); margin-bottom:8px }
+.btitle {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:20px; font-weight:700; letter-spacing:.02em;
+  color:var(--white); line-height:1.22; margin-bottom:10px; transition:color .2s;
+}
+.blog-feat:hover .btitle, .blog-card:hover .btitle { color:var(--teal) }
+.bexcerpt { font-size:13px; font-weight:300; color:var(--mist); line-height:1.7; flex:1 }
+.bread {
+  display:inline-flex; align-items:center; gap:8px; margin-top:16px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--teal); transition:gap .2s;
+}
+.blog-feat:hover .bread, .blog-card:hover .bread { gap:14px }
+/* Blog sidebar */
+.blog-side { display:flex; flex-direction:column; gap:3px; padding-left:3px }
+.bcat-item {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:13px 18px; background:var(--brown); cursor:pointer; transition:all .2s;
+  font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:500; letter-spacing:.06em; color:var(--mist);
+}
+.bcat-item:hover, .bcat-item.active { background:var(--teal); color:var(--black) }
+.bcat-n { font-family:'Bebas Neue',sans-serif; font-size:18px }
+.blog-nl { background:var(--brown); padding:26px; border-top:2px solid var(--teal) }
+.blog-nl h4 { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--white); margin-bottom:8px }
+.blog-nl p { font-size:12px; font-weight:300; color:var(--mist); line-height:1.6; margin-bottom:14px }
+.blog-nl input { width:100%; background:var(--dark); border:1px solid rgba(107,90,80,.3); color:var(--white); padding:10px 13px; font-family:'Barlow',sans-serif; font-size:13px; outline:none; margin-bottom:8px; transition:border-color .2s }
+.blog-nl input:focus { border-color:var(--teal) }
+.blog-nl button { width:100%; background:var(--teal); color:var(--black); border:none; padding:10px; font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; cursor:pointer; transition:background .2s }
+.blog-nl button:hover { background:var(--teal2) }
+
+/* ── CONTACTO ── */
+#contacto { background:var(--dark) }
+.ct-inner { max-width:1300px; margin:0 auto; padding:112px 60px }
+.ct-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; margin-top:60px }
+.ct-info p { font-size:15px; font-weight:300; line-height:1.8; color:var(--mist); margin-bottom:36px }
+.ct-det { display:flex; gap:14px; align-items:flex-start; margin-bottom:20px }
+.ct-ico { width:38px; height:38px; flex-shrink:0; border:1px solid rgba(91,184,191,.22); display:flex; align-items:center; justify-content:center; color:var(--teal); font-size:15px }
+.ct-txt strong { display:block; font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--light); margin-bottom:2px }
+.ct-txt span { font-size:13px; font-weight:300; color:var(--mist); line-height:1.6 }
+/* Horarios */
+.horario-grid {
+  display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-top:10px;
+}
+.dia {
+  background:var(--brown); padding:10px 6px; text-align:center;
+  border-top:2px solid transparent; transition:all .3s;
+}
+.dia:hover { border-top-color:var(--teal); background:#3a2015 }
+.dia-n { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); margin-bottom:5px }
+.dia-h { font-size:10px; font-weight:300; color:var(--mist); line-height:1.5 }
+.dia.cerrado .dia-h { color:var(--gray) }
+.ct-wa {
+  display:inline-flex; align-items:center; gap:12px;
+  background:#25D366; color:var(--black); padding:13px 26px; margin-top:24px;
+  font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  clip-path:polygon(8px 0%,100% 0%,calc(100%-8px) 100%,0% 100%);
+  cursor:pointer; transition:all .25s;
+}
+.ct-wa:hover { background:#1fba58; transform:translateY(-2px) }
+.ct-form { display:flex; flex-direction:column; gap:15px }
+.fg label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gray); margin-bottom:6px }
+.fg input,.fg textarea,.fg select { width:100%; background:var(--brown); border:1px solid rgba(107,90,80,.3); color:var(--white); padding:12px 15px; font-family:'Barlow',sans-serif; font-size:14px; font-weight:300; outline:none; transition:border-color .2s,background .2s; appearance:none; -webkit-appearance:none }
+.fg input:focus,.fg textarea:focus,.fg select:focus { border-color:var(--teal); background:#3a2015 }
+.fg textarea { height:110px; resize:none }
+.fg select { cursor:pointer }
+.fg select option { background:var(--dark) }
+.frow { display:grid; grid-template-columns:1fr 1fr; gap:15px }
+.btn-send { width:100%; background:var(--teal); color:var(--black); border:none; padding:15px; cursor:pointer; font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; clip-path:polygon(9px 0%,100% 0%,calc(100%-9px) 100%,0% 100%); transition:all .25s }
+.btn-send:hover { background:var(--teal2); transform:translateY(-2px) }
+
+/* ── FOOTER ── */
+footer { background:var(--black); border-top:1px solid rgba(91,184,191,.08); padding:68px 60px 30px }
+.ft-inner { max-width:1300px; margin:0 auto }
+.ft-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:52px; margin-bottom:52px }
+.ft-brand { font-size:26px; font-weight:400; letter-spacing:-.01em; color:var(--white); display:flex; align-items:center; margin-bottom:16px }
+.ft-brand svg { width:24px; height:24px; margin-left:2px }
+.ft-tag { font-size:13px; font-weight:300; line-height:1.7; color:var(--gray); max-width:260px }
+.ft-col h4 { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--teal); margin-bottom:18px; padding-bottom:10px; border-bottom:1px solid rgba(91,184,191,.15) }
+.ft-col a { display:block; font-size:13px; font-weight:300; color:var(--gray); margin-bottom:9px; transition:color .2s }
+.ft-col a:hover { color:var(--white) }
+.ft-col .addr { font-size:12px; font-weight:300; color:var(--gray); line-height:1.7; margin-bottom:8px }
+.ft-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(107,90,80,.1); padding-top:22px }
+.ft-copy { font-size:11px; color:var(--gray) }
+.ft-cert { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:.18em; color:var(--gray); text-transform:uppercase }
+.ft-cert span { color:var(--teal) }
+
+/* ── MOBILE ── */
+@media(max-width:1024px){
+  #nav{padding:0 20px}
+  .nav-links{display:none}
+  .sec,.pq-inner,.proc-inner,.ct-inner{padding-left:20px;padding-right:20px}
+  .hero-content{padding:0 20px;max-width:100%}
+  .hero-panel{width:35%;right:-40px}
+  .hero-stats{left:20px;gap:28px}
+  .pq-grid,.sb-grid{grid-template-columns:1fr}
+  .ind-grid{grid-template-columns:1fr 1fr}
+  .ind-card.tall{grid-row:span 1;aspect-ratio:4/3}
+  .proc-layout{grid-template-columns:1fr}
+  .blog-layout,.blog-grid,.blog-grid-2{grid-template-columns:1fr}
+  .blog-side{padding-left:0}
+  .ct-layout{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr 1fr;gap:32px}
+  .frow{grid-template-columns:1fr}
+  footer{padding:52px 20px 24px}
+  .horario-grid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <!-- Logo SVG replica del logo original Affilato: tipografía "affilato" + engranaje marrón + punto teal -->
+  <div class="nav-logo-wrap">
+    <span style="font-family:'Barlow',sans-serif;font-weight:400;font-size:22px;letter-spacing:-.01em">affil<span style="color:var(--teal)">a</span>t</span>
+    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;margin:0 1px">
+      <!-- Engranaje -->
+      <path d="M14 7.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z" fill="none"/>
+      <!-- Outer gear teeth - simple gear shape -->
+      <path d="M11.5 2.5h5l.8 2.8a8 8 0 0 1 2.4 1.4l2.9-.5 2.5 4.3-2.1 2.1a8 8 0 0 1 0 2.8l2.1 2.1-2.5 4.3-2.9-.5a8 8 0 0 1-2.4 1.4l-.8 2.8h-5l-.8-2.8a8 8 0 0 1-2.4-1.4l-2.9.5-2.5-4.3 2.1-2.1a8 8 0 0 1 0-2.8L2.5 10.5l2.5-4.3 2.9.5a8 8 0 0 1 2.4-1.4l.8-2.8z" fill="var(--white)" opacity=".9"/>
+      <!-- Inner circle -->
+      <circle cx="14" cy="14" r="5" fill="var(--dark)"/>
+      <!-- Teal dot center -->
+      <circle cx="14" cy="14" r="2.8" fill="var(--teal)"/>
+    </svg>
+    <span style="font-family:'Barlow',sans-serif;font-weight:400;font-size:22px;letter-spacing:-.01em"> </span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#inicio" class="active">Inicio</a></li>
+    <li><a href="#industrias">Industrias</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contacto">Contáctanos</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Cotizar ahora</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="inicio" style="padding:0;max-width:none">
+  <div class="hero-grid"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-scan"></div>
+  <div class="hero-panel">
+    <div class="hero-panel-shimmer"></div>
+    <div class="hero-panel-edge"></div>
+    <div class="hero-panel-label">TECNOLOGÍA DE AFILADO · PRECISIÓN INDUSTRIAL · GT</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Afilado industrial de precisión — Guatemala</div>
+    <h1 class="hero-h1">
+      <span class="outline">Filo</span>
+      <span class="accent">que no</span>
+      falla
+    </h1>
+    <p class="hero-sub">Especialistas en afilado de cuchillas industriales para los sectores más exigentes: litografía, hospitales, plástico, acero, industria cárnica y más. Cero errores humanos. Los mejores tiempos de entrega de Guatemala.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-p">Solicitar cotización →</a>
+      <a href="#industrias" class="btn-s">Ver industrias</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="hstat-v">0</div><div class="hstat-l">Errores humanos</div></div>
+    <div><div class="hstat-v">24H</div><div class="hstat-l">Tiempo de entrega</div></div>
+    <div><div class="hstat-v">6+</div><div class="hstat-l">Industrias servidas</div></div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="m-item">Afilado en Húmedo</span><span class="m-item">0 Errores Humanos</span><span class="m-item">Entrega en 24 hrs</span><span class="m-item">Litografías</span><span class="m-item">Hospitales</span><span class="m-item">Industria Cárnica</span><span class="m-item">Plástico y Acero</span><span class="m-item">Madera y Melamina</span><span class="m-item">Costurería</span><span class="m-item">Estéticas Caninas</span>
+    <span class="m-item">Afilado en Húmedo</span><span class="m-item">0 Errores Humanos</span><span class="m-item">Entrega en 24 hrs</span><span class="m-item">Litografías</span><span class="m-item">Hospitales</span><span class="m-item">Industria Cárnica</span><span class="m-item">Plástico y Acero</span><span class="m-item">Madera y Melamina</span><span class="m-item">Costurería</span><span class="m-item">Estéticas Caninas</span>
+  </div>
+</div>
+
+<!-- ── POR QUÉ AFFILATO ── -->
+<div id="porque">
+  <div class="pq-inner">
+    <div class="reveal">
+      <div class="stag">Por qué Affilato</div>
+      <h2 class="sh">La diferencia <span class="t">que</span><br/>se siente al cortar</h2>
+    </div>
+    <div class="pq-grid">
+      <div class="pq-card reveal">
+        <div class="pq-n">01</div>
+        <div class="pq-ico">💧</div>
+        <div class="pq-title">Afilado en Húmedo</div>
+        <p class="pq-p">Mayor control sobre la geometría del filo. Fundamental para herramientas que operan con tolerancias estrictas. El proceso elimina calor excesivo y preserva la metalurgia de cada hoja.</p>
+        <div class="pq-line"></div>
+      </div>
+      <div class="pq-card reveal d1">
+        <div class="pq-n">02</div>
+        <div class="pq-ico">⚙</div>
+        <div class="pq-title">Estándares de Calidad</div>
+        <p class="pq-p">Los errores no son parte de su operación — tampoco de la nuestra. Protocolos de revisión en cada etapa del proceso garantizan 0 errores humanos y máxima consistencia.</p>
+        <div class="pq-line"></div>
+      </div>
+      <div class="pq-card reveal d2">
+        <div class="pq-n">03</div>
+        <div class="pq-ico">⚡</div>
+        <div class="pq-title">Tiempo de Operación</div>
+        <p class="pq-p">Su tiempo de producción es invaluable. Somos la empresa más rápida en entregar herramientas afiladas en Guatemala — porque cada hora parada es dinero perdido para su operación.</p>
+        <div class="pq-line"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ── INDUSTRIAS ── -->
+<section class="sec" id="industrias">
+  <div class="ind-hdr reveal">
+    <div>
+      <div class="stag">Sectores</div>
+      <h2 class="sh">Industrias a las<br/>que <span class="t">servimos</span></h2>
+    </div>
+    <p class="slead" style="max-width:340px">Cada industria tiene sus propias exigencias. Conocemos las tolerancias, materiales y tiempos de cada sector.</p>
+  </div>
+  <div class="ind-grid">
+    <div class="ind-card tall reveal">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80" alt="Litografías"/>
+      <div class="ind-ov"></div>
+      <div class="ind-arr">→</div>
+      <div class="ind-info">
+        <div class="ind-cat">Industrial</div>
+        <div class="ind-name">Litografías</div>
+        <div class="ind-desc">Cuchillas de corte y guillotinas para imprentas y plantas de empaque.</div>
+      </div>
+    </div>
+    <div class="ind-card reveal d1">
+      <img src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=800&q=80" alt="Hospitales"/>
+      <div class="ind-ov"></div>
+      <div class="ind-arr">→</div>
+      <div class="ind-info">
+        <div class="ind-cat">Hospitalario</div>
+        <div class="ind-name">Hospitales</div>
+        <div class="ind-desc">Instrumental quirúrgico con estándares de esterilidad y precisión clínica.</div>
+      </div>
+    </div>
+    <div class="ind-card reveal d2">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Madera y Melamina"/>
+      <div class="ind-ov"></div>
+      <div class="ind-arr">→</div>
+      <div class="ind-info">
+        <div class="ind-cat">Carpintería</div>
+        <div class="ind-name">Madera y Melamina</div>
+        <div class="ind-desc">Cuchillas para tornos y fresadoras de alta precisión.</div>
+      </div>
+    </div>
+    <div class="ind-card reveal d1">
+      <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80" alt="Costurería"/>
+      <div class="ind-ov"></div>
+      <div class="ind-arr">→</div>
+      <div class="ind-info">
+        <div class="ind-cat">Textil</div>
+        <div class="ind-name">Costurería</div>
+        <div class="ind-desc">Tijeras y cuchillas para industria textil y confección.</div>
+      </div>
+    </div>
+    <div class="ind-card reveal d2">
+      <img src="https://images.unsplash.com/photo-1585625826756-05d3606302cd?w=800&q=80" alt="Industria Cárnica"/>
+      <div class="ind-ov"></div>
+      <div class="ind-arr">→</div>
+      <div class="ind-info">
+        <div class="ind-cat">Alimentaria</div>
+        <div class="ind-name">Industria Cárnica</div>
+        <div class="ind-desc">Discos, cuchillas de molino y trozadoras industriales.</div>
+      </div>
+    </div>
+    <div class="ind-card reveal d3">
+      <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=80" alt="Estéticas Caninas"/>
+      <div class="ind-ov"></div>
+      <div class="ind-arr">→</div>
+      <div class="ind-info">
+        <div class="ind-cat">Servicios</div>
+        <div class="ind-name">Estéticas Caninas</div>
+        <div class="ind-desc">Tijeras y navajas de grooming para veterinarias y estéticas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div id="stats-band">
+  <div class="sb-inner">
+    <div class="sb-grid">
+      <div class="sb-item reveal"><div class="sb-v">0</div><div class="sb-l">Errores Humanos</div></div>
+      <div class="sb-item reveal d1"><div class="sb-v">24H</div><div class="sb-l">Entrega Promedio</div></div>
+      <div class="sb-item reveal d2"><div class="sb-v">6+</div><div class="sb-l">Industrias Atendidas</div></div>
+      <div class="sb-item reveal d3"><div class="sb-v">GT</div><div class="sb-l">Más rápida de Guatemala</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROCESO ── -->
+<div id="proceso">
+  <div class="proc-inner">
+    <div class="reveal">
+      <div class="stag">Metodología</div>
+      <h2 class="sh">Así funciona<br/>nuestro <span class="t">proceso</span></h2>
+    </div>
+    <div class="proc-layout">
+      <div class="proc-steps">
+        <div class="proc-step active reveal" onclick="setStep(this)">
+          <div class="proc-sn">01</div>
+          <div><div class="proc-st">Recepción y diagnóstico</div><p class="proc-sd">Evaluamos el estado de cada herramienta, identificamos el tipo de acero, geometría del filo y nivel de desgaste para determinar el proceso óptimo.</p></div>
+        </div>
+        <div class="proc-step reveal d1" onclick="setStep(this)">
+          <div class="proc-sn">02</div>
+          <div><div class="proc-st">Afilado en húmedo</div><p class="proc-sd">Proceso controlado con refrigerante para preservar la metalurgia. Control preciso de ángulo, geometría y acabado superficial con tolerancias de ±0.01mm.</p></div>
+        </div>
+        <div class="proc-step reveal d2" onclick="setStep(this)">
+          <div class="proc-sn">03</div>
+          <div><div class="proc-st">Control de calidad</div><p class="proc-sd">Verificación rigurosa: medición de geometría, test de corte y revisión visual antes de autorizar cualquier entrega. Cero errores humanos en el proceso.</p></div>
+        </div>
+        <div class="proc-step reveal d3" onclick="setStep(this)">
+          <div class="proc-sn">04</div>
+          <div><div class="proc-st">Entrega express</div><p class="proc-sd">Empaque seguro y logística coordinada para la entrega más rápida de Guatemala. Su operación no espera — nosotros tampoco. Cobertura en Ciudad de Guatemala.</p></div>
+        </div>
+      </div>
+      <div class="proc-vis reveal d2">
+        <div class="proc-vis-grid"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:20px;z-index:1">
+          <div class="gauge">
+            <div class="gauge-c">
+              <div class="gauge-v">±0.01</div>
+              <div class="gauge-u">mm tolerancia</div>
+            </div>
+          </div>
+          <div class="proc-badges">
+            <div class="proc-badge"><div class="proc-badge-v">ISO</div><div class="proc-badge-l">Estándar</div></div>
+            <div class="proc-badge"><div class="proc-badge-v">CNC</div><div class="proc-badge-l">Proceso</div></div>
+            <div class="proc-badge"><div class="proc-badge-v">QC</div><div class="proc-badge-l">Control</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ── BLOG ── -->
+<section class="sec" id="blog">
+  <div class="blog-hdr reveal">
+    <div>
+      <div class="stag">Conocimiento</div>
+      <h2 class="sh">Noticias &<br/><span class="t">blog técnico</span></h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+      <p class="slead" style="max-width:300px;text-align:right">Artículos técnicos y noticias de la industria del afilado industrial.</p>
+      <a href="#blog" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--teal);text-transform:uppercase">Ver todos los artículos →</a>
+    </div>
+  </div>
+  <div class="blog-layout">
+    <div class="blog-grid">
+      <div class="blog-feat reveal">
+        <img class="blog-feat-img" src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=900&q=80" alt="Afilado correctivo vs preventivo"/>
+        <div class="blog-feat-body">
+          <div class="bcat">Mantenimiento de herramientas</div>
+          <div class="bdate">23 de marzo de 2026</div>
+          <div class="btitle">Afilado correctivo vs. preventivo: ¿Cuál es mejor para su operación?</div>
+          <div class="bexcerpt">En la industria cárnica, carpintería, hospitales y litografías, mantener las herramientas en óptimas condiciones es esencial. No todos los métodos de afilado son iguales — y elegir mal puede costarle productividad.</div>
+          <div class="bread">Continuar leyendo →</div>
+        </div>
+      </div>
+      <div class="blog-card reveal d1">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1581092334247-ddef2a41a8f8?w=600&q=80" alt="Riesgos laborales"/>
+        <div class="blog-card-body">
+          <div class="bcat">Productividad</div>
+          <div class="bdate">16 de marzo de 2026</div>
+          <div class="btitle">Riesgos laborales asociados a herramientas desafiladas</div>
+          <div class="bexcerpt">En manufactura y metalurgia, la seguridad depende del estado de las herramientas. Conozca los riesgos reales.</div>
+          <div class="bread">Leer más →</div>
+        </div>
+      </div>
+      <div class="blog-card reveal d2">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?w=600&q=80" alt="Cuchillas industriales"/>
+        <div class="blog-card-body">
+          <div class="bcat">Tecnología y precisión</div>
+          <div class="bdate">9 de marzo de 2026</div>
+          <div class="btitle">La importancia estratégica del afilado de cuchillas industriales</div>
+          <div class="bexcerpt">En manufactura y metalurgia, la eficiencia del corte es un activo estratégico que impacta directamente la rentabilidad.</div>
+          <div class="bread">Leer más →</div>
+        </div>
+      </div>
+    </div>
+    <!-- Segunda fila del blog -->
+    <div class="blog-grid-2">
+      <div class="blog-card reveal">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80" alt="Grooming canino"/>
+        <div class="blog-card-body">
+          <div class="bcat">Estética Canina</div>
+          <div class="bdate">2 de marzo de 2026</div>
+          <div class="btitle">Tijeras de grooming: cuándo afilarlas y qué señales no ignorar</div>
+          <div class="bexcerpt">Las tijeras desafiladas no solo arruinan el corte — dañan el pelo del animal y fatigan la mano del groomer. Sepa cómo identificar el momento exacto de llevarlas a afilar.</div>
+          <div class="bread">Leer más →</div>
+        </div>
+      </div>
+      <div class="blog-card reveal d1">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80" alt="Industria textil"/>
+        <div class="blog-card-body">
+          <div class="bcat">Industria Textil</div>
+          <div class="bdate">24 de febrero de 2026</div>
+          <div class="btitle">Cuchillas circulares en confección: vida útil y mantenimiento correcto</div>
+          <div class="bexcerpt">En la maquila textil, una cuchilla circular desafilada genera desperdicios de tela y retrasos en la línea. Conozca los ciclos de afilado recomendados por volumen de producción.</div>
+          <div class="bread">Leer más →</div>
+        </div>
+      </div>
+      <div class="blog-card reveal d2">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="Guillotina litografía"/>
+        <div class="blog-card-body">
+          <div class="bcat">Litografía</div>
+          <div class="bdate">17 de febrero de 2026</div>
+          <div class="btitle">¿Cada cuánto debe afilarse la cuchilla de guillotina en su imprenta?</div>
+          <div class="bexcerpt">La respuesta depende del gramaje del papel, la velocidad de la máquina y el tipo de acero. Le damos la guía práctica para planificar el mantenimiento sin parar la producción.</div>
+          <div class="bread">Leer más →</div>
+        </div>
+      </div>
+    </div>
+    <div class="blog-side reveal d2">
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(91,184,191,.15)">Categorías</div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div class="bcat-item active"><span>Todas las publicaciones</span><span class="bcat-n">6</span></div>
+          <div class="bcat-item"><span>Mantenimiento</span><span class="bcat-n">3</span></div>
+          <div class="bcat-item"><span>Productividad</span><span class="bcat-n">1</span></div>
+          <div class="bcat-item"><span>Tecnología</span><span class="bcat-n">1</span></div>
+          <div class="bcat-item"><span>Estética Canina</span><span class="bcat-n">1</span></div>
+          <div class="bcat-item"><span>Litografía</span><span class="bcat-n">1</span></div>
+          <div class="bcat-item"><span>Industria Textil</span><span class="bcat-n">1</span></div>
+        </div>
+      </div>
+      <div class="blog-nl">
+        <h4>Newsletter industrial</h4>
+        <p>Reciba artículos técnicos y novedades del sector directo en su correo.</p>
+        <input type="email" placeholder="su@correo.com"/>
+        <button>Suscribirse</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CONTACTO ── -->
+<div id="contacto">
+  <div class="ct-inner">
+    <div class="reveal">
+      <div class="stag">Contáctanos</div>
+      <h2 class="sh">Solicite su <span class="t">cotización</span><br/><span class="o">hoy mismo</span></h2>
+    </div>
+    <div class="ct-layout">
+      <div class="reveal">
+        <p>Estudiamos las necesidades del mercado guatemalteco y centroamericano. Nuestro compromiso: los tiempos de respuesta más cortos del mercado, bajo los estándares de calidad más exigentes.</p>
+
+        <div class="ct-det">
+          <div class="ct-ico">📍</div>
+          <div class="ct-txt">
+            <strong>Dirección</strong>
+            <span>Calzada San Juan 9-11 Zona 7<br/>Guatemala, Guatemala</span>
+          </div>
+        </div>
+        <div class="ct-det">
+          <div class="ct-ico">📞</div>
+          <div class="ct-txt">
+            <strong>Teléfono</strong>
+            <span>(502) 4210-3812</span>
+          </div>
+        </div>
+        <div class="ct-det">
+          <div class="ct-ico">✉</div>
+          <div class="ct-txt">
+            <strong>Email</strong>
+            <span>info@affilato.net</span>
+          </div>
+        </div>
+
+        <!-- Horario -->
+        <div style="margin-top:28px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:14px">Horario de atención</div>
+          <div class="horario-grid">
+            <div class="dia">
+              <div class="dia-n">Lun</div>
+              <div class="dia-h">08:00<br/>05:00 pm</div>
+            </div>
+            <div class="dia">
+              <div class="dia-n">Mar</div>
+              <div class="dia-h">08:00<br/>05:00 pm</div>
+            </div>
+            <div class="dia">
+              <div class="dia-n">Mié</div>
+              <div class="dia-h">08:00<br/>05:00 pm</div>
+            </div>
+            <div class="dia">
+              <div class="dia-n">Jue</div>
+              <div class="dia-h">08:00<br/>05:00 pm</div>
+            </div>
+            <div class="dia">
+              <div class="dia-n">Vie</div>
+              <div class="dia-h">08:00<br/>05:00 pm</div>
+            </div>
+            <div class="dia">
+              <div class="dia-n">Sáb</div>
+              <div class="dia-h">08:00<br/>12:00 pm</div>
+            </div>
+            <div class="dia cerrado">
+              <div class="dia-n" style="color:var(--gray)">Dom</div>
+              <div class="dia-h">Cerrado</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://wa.me/50242103812" class="ct-wa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp: (502) 4210-3812
+        </a>
+      </div>
+
+      <form class="ct-form reveal d1" onsubmit="handleForm(event)">
+        <div class="frow">
+          <div class="fg"><label>Nombre</label><input type="text" placeholder="Su nombre" required/></div>
+          <div class="fg"><label>Empresa</label><input type="text" placeholder="Su empresa"/></div>
+        </div>
+        <div class="fg"><label>Correo electrónico</label><input type="email" placeholder="correo@empresa.com" required/></div>
+        <div class="fg"><label>Teléfono / WhatsApp</label><input type="tel" placeholder="(502) ____-____"/></div>
+        <div class="fg">
+          <label>Industria / Sector</label>
+          <select>
+            <option value="">Seleccione su industria</option>
+            <option>Litografía / Imprenta</option>
+            <option>Hospital / Clínica</option>
+            <option>Madera y Melamina</option>
+            <option>Costurería / Textil</option>
+            <option>Industria Cárnica</option>
+            <option>Estética Canina</option>
+            <option>Plástico / Acero</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="fg"><label>Tipo de herramienta / cuchilla</label><input type="text" placeholder="Ej: cuchillas de guillotina, tijeras quirúrgicas..."/></div>
+        <div class="fg"><label>Mensaje</label><textarea placeholder="Describa su necesidad o cantidad de piezas..."></textarea></div>
+        <button type="submit" class="btn-send">Enviar solicitud →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div>
+        <div class="ft-brand">
+          affil<span style="color:var(--teal)">a</span>t
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.5 2.5h5l.8 2.8a8 8 0 0 1 2.4 1.4l2.9-.5 2.5 4.3-2.1 2.1a8 8 0 0 1 0 2.8l2.1 2.1-2.5 4.3-2.9-.5a8 8 0 0 1-2.4 1.4l-.8 2.8h-5l-.8-2.8a8 8 0 0 1-2.4-1.4l-2.9.5-2.5-4.3 2.1-2.1a8 8 0 0 1 0-2.8L2.5 10.5l2.5-4.3 2.9.5a8 8 0 0 1 2.4-1.4l.8-2.8z" fill="rgba(245,238,232,.7)"/>
+            <circle cx="14" cy="14" r="5" fill="var(--dark)"/>
+            <circle cx="14" cy="14" r="2.8" fill="var(--teal)"/>
+          </svg>
+        </div>
+        <p class="ft-tag">Especialistas en afilado industrial de precisión para Guatemala y Centroamérica. Tecnología, rapidez y cero errores.</p>
+        <div style="margin-top:20px;font-size:12px;color:var(--gray);line-height:1.8">
+          <div>📍 Calzada San Juan 9-11 Zona 7, Guatemala</div>
+          <div>📞 (502) 4210-3812</div>
+          <div>✉ info@affilato.net</div>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Navegación</h4>
+        <a href="#inicio">Inicio</a>
+        <a href="#industrias">Industrias</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#blog">Blog</a>
+        <a href="#contacto">Contáctanos</a>
+      </div>
+      <div class="ft-col">
+        <h4>Industrias</h4>
+        <a href="#industrias">Litografías</a>
+        <a href="#industrias">Hospitales</a>
+        <a href="#industrias">Industria Cárnica</a>
+        <a href="#industrias">Costurería</a>
+        <a href="#industrias">Madera y Melamina</a>
+        <a href="#industrias">Estéticas Caninas</a>
+      </div>
+      <div class="ft-col">
+        <h4>Horario</h4>
+        <a href="#contacto" style="color:var(--mist)">Lun – Vie: 8:00am – 5:00pm</a>
+        <a href="#contacto" style="color:var(--mist)">Sábado: 8:00am – 12:00pm</a>
+        <a href="#contacto" style="color:var(--gray)">Domingo: Cerrado</a>
+        <a href="https://wa.me/50242103812" style="color:var(--teal);margin-top:12px">WhatsApp directo →</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-copy">© 2026 AFFILATO — Todos los derechos reservados. Ciudad de Guatemala, Guatemala.</div>
+      <div class="ft-cert">Afilado Industrial <span>·</span> Precisión <span>·</span> Guatemala</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
+
+// Reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, {threshold:0.08, rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Blog categories
+document.querySelectorAll('.bcat-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.bcat-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
+
+// Proceso steps
+function setStep(el) {
+  document.querySelectorAll('.proc-step').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Form submit
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-send');
+  btn.textContent = '✓ SOLICITUD ENVIADA';
+  btn.style.background = 'var(--teal3)';
+  setTimeout(() => { btn.textContent = 'Enviar solicitud →'; btn.style.background = ''; e.target.reset(); }, 3500);
+}
+</script>
+</body>
+</html>
